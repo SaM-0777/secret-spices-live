@@ -20,8 +20,11 @@ app.set('view engine', 'ejs');
 
 // middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan("dev"));
+
+// routes
 app.use("/api", cookbookRouter);
 app.use("/api", collectionRouter);
 app.use("/api", recipeRouter);
@@ -53,7 +56,7 @@ async function connectToDB () {
 };
 mongoose.connection.on("disconnected", () => console.log("MongoDB Disconnected"));
 
-// App listern
+// App listen
 app.listen(process.env.PORT || 8800, () => {
     connectToDB()
     console.log("connected to backend")

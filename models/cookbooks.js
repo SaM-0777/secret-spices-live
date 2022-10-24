@@ -1,29 +1,47 @@
 import mongoose from "mongoose";
 
 
-const cookbookSchema = new mongoose.Schema({
-    name: {
+const subscriptionsSchema = new mongoose.Schema({
+    userId: {
         type: String,
-        required: true,
+        // unique: true,
     },
-    user: {
+    createdAt: { type: Date, immutable: true, default: Date.now },
+});
+
+const cookbookSchema = new mongoose.Schema({
+    userId: {
         type: String,
         required: true,
+        unique: true,
     },
     profileImage: {
         type: String,
-        require: true,
     },
-    collectionsNo: {
-        type: Number,
+    name: {
+        type: String,
+        required: true,
+        maxLength: 50,
     },
-    recipesNo: {
-        type: Number,
+    description: {
+        type: String,
+        required: true,
+        maxLength: 500,
     },
-    subscriptionNo: {
-        type: Number,
+    collections: {
+        type: [String],     // holds collection_ids
+        default: []
     },
-    createdAt: { type: Date, immutable: true, default: () => Date.now() },
+    recipes: {
+        type: [String],     // holds recipe_ids
+        default: []
+    },
+    subscriptions: {
+        type: [subscriptionsSchema],
+        default: []
+    },
+    createdAt: { type: Date, immutable: true, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
 });
 
 
