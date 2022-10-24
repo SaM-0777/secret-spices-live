@@ -40,7 +40,7 @@ collectionRouter.get('/collection/:collectionId', getCollectionByCollectionId);
 
 /**
  * Method   Desc
- * POST     To create a new cookbook
+ * POST     To create a new collection
  */
 collectionRouter.post('/collection/new', createNewCollection);
 

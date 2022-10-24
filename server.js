@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 // Routes
 import cookbookRouter from "./routes/cookbook.js";
 import collectionRouter from "./routes/collection.js";
+import recipeRouter from "./routes/recipe.js";
 
 
 //App config
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use("/api", cookbookRouter);
 app.use("/api", collectionRouter);
+app.use("/api", recipeRouter);
 app.use("/", (req, res) => {
     res.status(200).render('home.ejs')
 });
