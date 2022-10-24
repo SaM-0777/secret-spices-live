@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import cookbookRouter from "./routes/cookbook.js";
 import collectionRouter from "./routes/collection.js";
 import recipeRouter from "./routes/recipe.js";
+import commentRouter from "./routes/comment.js";
 
 
 //App config
@@ -24,6 +25,7 @@ app.use(morgan("dev"));
 app.use("/api", cookbookRouter);
 app.use("/api", collectionRouter);
 app.use("/api", recipeRouter);
+app.use("/api", commentRouter);
 app.use("/", (req, res) => {
     res.status(200).render('home.ejs')
 });
@@ -56,6 +58,4 @@ app.listen(process.env.PORT || 8800, () => {
     connectToDB()
     console.log("connected to backend")
 });
-
-
 
