@@ -6,7 +6,7 @@ export async function getAllCookbooksByUserId (req, res) {
     res.send(req.params.userId)
 };
 
-export async function getAllCookbooksByCookbookId (req, res) {
+export async function getCookbookByCookbookId (req, res) {
 
 };
 

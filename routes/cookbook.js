@@ -1,6 +1,13 @@
 import express from "express";
 
-import { getAllCookbooks, getAllCookbooksByUserId, getAllCookbooksByCookbookId, createNewCookbook, updateCookbook, deleteCookbook } from "../controllers/cookbook.js";
+import {
+    getAllCookbooks,
+    getAllCookbooksByUserId,
+    getCookbookByCookbookId,
+    createNewCookbook,
+    updateCookbook,
+    deleteCookbook,
+} from "../controllers/cookbook.js";
 
 
 const cookbookRouter = express.Router(); 
@@ -21,7 +28,7 @@ cookbookRouter.get('/cookbook/:userId', getAllCookbooksByUserId);
  * Method   Desc
  * GET      Get a particular cookbook for a cookbook id
  */
-cookbookRouter.get('/cookbook/:cookbookId', getAllCookbooksByCookbookId);
+cookbookRouter.get('/cookbook/:cookbookId', getCookbookByCookbookId);
 
 /**
  * Method   Desc
