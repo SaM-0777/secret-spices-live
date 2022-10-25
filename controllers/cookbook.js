@@ -22,8 +22,9 @@ export async function getAllCookbooksByUserId (req, res) {
 
 export async function getCookbookByCookbookId (req, res) {
     const cookbookId = req.params.cookbookId
+    console.log(cookbookId)
     try {
-        const cookbooksFilterByCookbookId = await Cookbooks.find({ cookbookId })
+        const cookbooksFilterByCookbookId = await Cookbooks.findById(cookbookId)
         res.status(200).json(cookbooksFilterByCookbookId)
     } catch (error) {
         res.status(500).json({ message: error.message })

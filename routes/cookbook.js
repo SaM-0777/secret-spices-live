@@ -22,13 +22,13 @@ cookbookRouter.get('/', getAllCookbooks);
  * Method   Desc
  * GET      Get all cookbook for a user id
  */
-cookbookRouter.get('/:userId', getAllCookbooksByUserId);
+cookbookRouter.get('/byuser/:userId', getAllCookbooksByUserId);
 
 /**
  * Method   Desc
  * GET      Get a particular cookbook for a cookbook id
  */
-cookbookRouter.get('/:cookbookId', getCookbookByCookbookId);
+cookbookRouter.get('/bycookbook/:cookbookId', getCookbookByCookbookId);
 
 /**
  * Method   Desc

@@ -24,19 +24,19 @@ collectionRouter.get('/', getAllCollections);
  * Method   Desc
  * GET      Get all collection for a user id
  */
-collectionRouter.get('/:userId', getAllCollectionsByUserId);
+collectionRouter.get('/byuser/:userId', getAllCollectionsByUserId);
 
 /**
  * Method   Desc
  * GET      Get all collection for a cookbook id
  */
-collectionRouter.get('/:cookbookId', getAllCollectionsByCookbookId);
+collectionRouter.get('/bycookbook/:cookbookId', getAllCollectionsByCookbookId);
 
 /**
  * Method   Desc
  * GET      Get a particular collection for a collection id
  */
-collectionRouter.get('/:collectionId', getCollectionByCollectionId);
+collectionRouter.get('/bycollection/:collectionId', getCollectionByCollectionId);
 
 /**
  * Method   Desc

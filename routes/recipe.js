@@ -25,25 +25,25 @@ recipeRouter.get('/', getAllRecipes);
  * Method   Desc
  * GET      Get all recipe for a user id
  */
-recipeRouter.get('/:userId', getAllRecipesByUserId);
+recipeRouter.get('/byuser/:userId', getAllRecipesByUserId);
 
 /**
  * Method   Desc
  * GET      Get all recipe for a cookbook id
  */
-recipeRouter.get('/:cookbookId', getAllRecipesByCookbookId);
+recipeRouter.get('/bycookbook/:cookbookId', getAllRecipesByCookbookId);
 
 /**
  * Method   Desc
  * GET      Get a all recipe for a collection id
  */
-recipeRouter.get('/:collectionId', getAllRecipesByCollectionId);
+recipeRouter.get('/bycollection/:collectionId', getAllRecipesByCollectionId);
 
 /**
  * Method   Desc
  * GET      Get a particular recipe for a recipe id
  */
-recipeRouter.get('/:recipeId', getRecipeByRecipeId);
+recipeRouter.get('/byrecipe/:recipeId', getRecipeByRecipeId);
 
 /**
  * Method   Desc

@@ -24,19 +24,19 @@ commentRouter.get('/', getAllComments);
  * Method   Desc
  * GET      Get all comments for a user id
  */
-commentRouter.get('/:userId', getAllCommentsByUserId);
+commentRouter.get('/byuser/:userId', getAllCommentsByUserId);
 
 /**
  * Method   Desc
  * GET      Get all comments for a recipe id
  */
-commentRouter.get('/:recipeId', getAllCommentsByRecipeId);
+commentRouter.get('/byrecipe/:recipeId', getAllCommentsByRecipeId);
 
 /**
  * Method   Desc
  * GET      Get a comment for a comment id
  */
-commentRouter.get('/:commentId', getCommentByCommentId);
+commentRouter.get('/bycomment/:commentId', getCommentByCommentId);
 
 /**
  * Method   Desc
