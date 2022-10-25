@@ -44,7 +44,7 @@ export async function createNewCookbook(req, res) {
         const newCookbook = await cookbook.save()
         res.status(201).json(newCookbook)
     } catch (error) {
-        res.status(400).json({ message: error.message, body: req.body })
+        res.status(400).json({ message: error.message })
     }
 };
 

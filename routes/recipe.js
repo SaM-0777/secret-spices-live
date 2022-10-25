@@ -19,49 +19,49 @@ const recipeRouter = express.Router();
  * Method   Desc
  * GET      Get all recipes
  */
-recipeRouter.get('/recipe', getAllRecipes);
+recipeRouter.get('/', getAllRecipes);
 
 /**
  * Method   Desc
  * GET      Get all recipe for a user id
  */
-recipeRouter.get('/recipe/:userId', getAllRecipesByUserId);
+recipeRouter.get('/:userId', getAllRecipesByUserId);
 
 /**
  * Method   Desc
  * GET      Get all recipe for a cookbook id
  */
-recipeRouter.get('/recipe/:cookbookId', getAllRecipesByCookbookId);
+recipeRouter.get('/:cookbookId', getAllRecipesByCookbookId);
 
 /**
  * Method   Desc
  * GET      Get a all recipe for a collection id
  */
-recipeRouter.get('/recipe/:collectionId', getAllRecipesByCollectionId);
+recipeRouter.get('/:collectionId', getAllRecipesByCollectionId);
 
 /**
  * Method   Desc
  * GET      Get a particular recipe for a recipe id
  */
-recipeRouter.get('/recipe/:recipeId', getRecipeByRecipeId);
+recipeRouter.get('/:recipeId', getRecipeByRecipeId);
 
 /**
  * Method   Desc
  * POST     To create a new recipe
  */
-recipeRouter.post('/recipe/new', createNewRecipe);
+recipeRouter.post('/new', createNewRecipe);
 
 /**
  * Method   Desc
  * PATCH    To update a particular recipe for a recipe id
  */
-recipeRouter.patch('/recipe/:collectionId', updateRecipe);
+recipeRouter.patch('/:recipeId', updateRecipe);
 
 /**
  * Method   Desc
  * DELETE   To delete a particular recipe for a recipe id
  */
-recipeRouter.delete('/recipe/:collectionId', deleteRecipe);
+recipeRouter.delete('/:recipeId', deleteRecipe);
 
 
 export default recipeRouter;

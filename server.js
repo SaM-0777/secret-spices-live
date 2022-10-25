@@ -19,16 +19,16 @@ dotenv.config();
 app.set('view engine', 'ejs');
 
 // middleware
-app.use(express.json());
+app.use(express.json({ type: 'application/json' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan("dev"));
 
 // routes
-app.use("/api", cookbookRouter);
-app.use("/api", collectionRouter);
-app.use("/api", recipeRouter);
-app.use("/api", commentRouter);
+app.use("/api/cookbook", cookbookRouter);
+app.use("/api/collection", collectionRouter);
+app.use("/api/recipe", recipeRouter);
+app.use("/api/comment", commentRouter);
 app.use("/", (req, res) => {
     res.status(200).render('home.ejs')
 });

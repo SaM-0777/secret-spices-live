@@ -18,43 +18,43 @@ const collectionRouter = express.Router();
  * Method   Desc
  * GET      Get all collection
  */
-collectionRouter.get('/collection', getAllCollections);
+collectionRouter.get('/', getAllCollections);
 
 /**
  * Method   Desc
  * GET      Get all collection for a user id
  */
-collectionRouter.get('/collection/:userId', getAllCollectionsByUserId);
+collectionRouter.get('/:userId', getAllCollectionsByUserId);
 
 /**
  * Method   Desc
  * GET      Get all collection for a cookbook id
  */
-collectionRouter.get('/collection/:cookbookId', getAllCollectionsByCookbookId);
+collectionRouter.get('/:cookbookId', getAllCollectionsByCookbookId);
 
 /**
  * Method   Desc
  * GET      Get a particular collection for a collection id
  */
-collectionRouter.get('/collection/:collectionId', getCollectionByCollectionId);
+collectionRouter.get('/:collectionId', getCollectionByCollectionId);
 
 /**
  * Method   Desc
  * POST     To create a new collection
  */
-collectionRouter.post('/collection/new', createNewCollection);
+collectionRouter.post('/new', createNewCollection);
 
 /**
  * Method   Desc
  * PATCH    To update a particular collection for a collection id
  */
-collectionRouter.patch('/collection/:collectionId', updateCollection);
+collectionRouter.patch('/:collectionId', updateCollection);
 
 /**
  * Method   Desc
  * DELETE   To delete a particular collection for a collection id
  */
-collectionRouter.delete('/collection/:collectionId', deleteCollection);
+collectionRouter.delete('/:collectionId', deleteCollection);
 
 
 export default collectionRouter;

@@ -16,37 +16,37 @@ const cookbookRouter = express.Router();
  * Method   Desc
  * GET      Get all cookbook
  */
-cookbookRouter.get('/cookbook', getAllCookbooks);
+cookbookRouter.get('/', getAllCookbooks);
 
 /**
  * Method   Desc
  * GET      Get all cookbook for a user id
  */
-cookbookRouter.get('/cookbook/:userId', getAllCookbooksByUserId);
+cookbookRouter.get('/:userId', getAllCookbooksByUserId);
 
 /**
  * Method   Desc
  * GET      Get a particular cookbook for a cookbook id
  */
-cookbookRouter.get('/cookbook/:cookbookId', getCookbookByCookbookId);
+cookbookRouter.get('/:cookbookId', getCookbookByCookbookId);
 
 /**
  * Method   Desc
  * POST     To create a new cookbook
  */
-cookbookRouter.post('/cookbook/new', createNewCookbook);
+cookbookRouter.post('/new', createNewCookbook);
 
 /**
  * Method   Desc
  * PATCH    To update a particular cookbook for a cookbook id
  */
-cookbookRouter.patch('/cookbook/:cookbookId', updateCookbook);
+cookbookRouter.patch('/:cookbookId', updateCookbook);
 
 /**
  * Method   Desc
  * DELETE   To delete a particular cookbook for a cookbook id
  */
-cookbookRouter.delete('/cookbook/:cookbookId', deleteCookbook);
+cookbookRouter.delete('/:cookbookId', deleteCookbook);
 
 
 export default cookbookRouter;
