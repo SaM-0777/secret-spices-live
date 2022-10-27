@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const CommentSchema = mongoose.Schema({
+const ViewSchema = mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -10,18 +10,15 @@ const CommentSchema = mongoose.Schema({
         type: mongoose.Types.ObjectId,
         required: true,
     },
-    comment: {
-        type: String,
+    viewStatus: {
+        type: Boolean,   // false->No    true->Yes
+        default: false,
         required: true,
-        maxLength: 500,
-    },
-    pinned: {
-        type: Boolean,
     },
     updatedAt: { type: Date, default: Date.now },
-    createdAt: { type: Date, immutable: true, default: Date.now },
+    createdAt: { type: Date, default: Date.now, immutable: true },
 });
 
 
-export default mongoose.model("Comments", CommentSchema);
+export default mongoose.model('Views', ViewSchema);
 

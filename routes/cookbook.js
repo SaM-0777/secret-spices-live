@@ -1,5 +1,8 @@
 import express from "express";
 
+import isValidObject from "../middlewares/cookbook/isValidObject.js";
+
+
 import {
     getAllCookbooks,
     getAllCookbooksByUserId,
@@ -40,13 +43,13 @@ cookbookRouter.post('/new', createNewCookbook);
  * Method   Desc
  * PATCH    To update a particular cookbook for a cookbook id
  */
-cookbookRouter.patch('/:cookbookId', updateCookbook);
+cookbookRouter.patch('/:cookbookId', isValidObject, updateCookbook);
 
 /**
  * Method   Desc
  * DELETE   To delete a particular cookbook for a cookbook id
  */
-cookbookRouter.delete('/:cookbookId', deleteCookbook);
+cookbookRouter.delete('/:cookbookId', isValidObject, deleteCookbook);
 
 
 export default cookbookRouter;

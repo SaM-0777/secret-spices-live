@@ -29,9 +29,9 @@ app.use("/api/cookbook", cookbookRouter);
 app.use("/api/collection", collectionRouter);
 app.use("/api/recipe", recipeRouter);
 app.use("/api/comment", commentRouter);
-app.use("/", (req, res) => {
+/*app.use("/", (req, res) => {
     res.status(200).render('home.ejs')
-});
+});*/
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500
     const errorMessage = err.message || "something else"

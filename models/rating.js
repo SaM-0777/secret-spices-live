@@ -1,27 +1,24 @@
 import mongoose from "mongoose";
 
 
-const CommentSchema = mongoose.Schema({
+const RatingSchema = mongoose.Schema({
     userId: {
         type: String,
         required: true,
+        unique: true,
     },
     recipeId: {
         type: mongoose.Types.ObjectId,
         required: true,
     },
-    comment: {
-        type: String,
+    rating: {
+        type: Decimal128,
         required: true,
-        maxLength: 500,
-    },
-    pinned: {
-        type: Boolean,
     },
     updatedAt: { type: Date, default: Date.now },
-    createdAt: { type: Date, immutable: true, default: Date.now },
+    createdAt: { type: Date, default: Date.now, immutable: true },
 });
 
 
-export default mongoose.model("Comments", CommentSchema);
+export default mongoose.model('Ratings', RatingSchema);
 

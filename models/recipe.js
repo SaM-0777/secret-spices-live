@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const stepSchema = mongoose.Schema({
     step: {
         type: String,
-        maxLength: 200,
+        maxLength: 500,
     },
     image: {
         type: String,
@@ -14,7 +14,7 @@ const stepSchema = mongoose.Schema({
 const ingridientSchema = mongoose.Schema({
     ingridient: {
         type: String,
-        maxLength: 150,
+        maxLength: 200,
     },
     image: {
         type: String,
@@ -24,7 +24,7 @@ const ingridientSchema = mongoose.Schema({
 const nutrientSchema = mongoose.Schema({
     nutrientType: {
         type: String,
-        maxLength: 150,
+        maxLength: 200,
     },
     nutrientValue: {
         type: Number,
@@ -37,7 +37,7 @@ const nutrientSchema = mongoose.Schema({
     }
 });
 
-const ratingSchema = mongoose.Schema({
+/*const ratingSchema = mongoose.Schema({
     userId: {
         type: String,
         unique: true,
@@ -46,48 +46,20 @@ const ratingSchema = mongoose.Schema({
         type: Number,
     },
 });
+*/
 
-const viewSchema = mongoose.Schema({
-    userId: {
-        type: String,
-        unique: true,
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        immutable: true,
-    },
-});
-
-const likeSchema = mongoose.Schema({
-    userId: {
-        type: String,
-        unique: true,
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        immutable: true,
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-    },
-});
-
-const recipeSchema = mongoose.Schema({
+const RecipeSchema = mongoose.Schema({
     userId: {
         type: String,
         unique: true,
         required: true,
     },
-    cookbookId: {
+    authorId: {
         type: mongoose.Types.ObjectId,
         required: true,
     },
-    collectionId: {
+    cookbookId: {
         type: [mongoose.Types.ObjectId],
-        required: true,
     },
     thumbnail: {
         type: String,
@@ -100,12 +72,12 @@ const recipeSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
-        maxLength: 50,
+        maxLength: 60,
     },
     description: {
         type: String,
         required: true,
-        maxLength: 500,
+        maxLength: 2000,
     },
     steps: {
         type: [stepSchema],
@@ -126,30 +98,22 @@ const recipeSchema = mongoose.Schema({
         type: [Decimal128],
         required: true,
     },
-    views: {
-        type: [viewSchema],
-    },
-    likes: {
-        type: [likeSchema],
-    },
-    ratings: {
-        type: [ratingSchema],
-    },
-    comments: {
-        type: [mongoose.Types.ObjectId],
-    },
     tags: {
         type: [String],
-        // required: true,
+        required: true,
     },
     categories: {
         type: [String],
         required: true,
     },
-    createdAt: { type: Date, immutable: true, default: Date.now },
+    vegOrNonVeg: {
+        type: Boolean,  // 0->Veg   1->NonVeg
+        required: true,
+    },
     updatedAt: { type: Date, default: Date.now },
+    createdAt: { type: Date, immutable: true, default: Date.now },
 });
 
 
-export default mongoose.model("Recipes", recipeSchema);
+export default mongoose.model("Recipes", RecipeSchema);
 

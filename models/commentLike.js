@@ -1,27 +1,24 @@
 import mongoose from "mongoose";
 
 
-const CommentSchema = mongoose.Schema({
+const CommentLike = mongoose.Schema({
     userId: {
         type: String,
         required: true,
     },
-    recipeId: {
+    commentId: {
         type: mongoose.Types.ObjectId,
         required: true,
     },
-    comment: {
-        type: String,
-        required: true,
-        maxLength: 500,
-    },
-    pinned: {
+    commentLikeStatus: {
         type: Boolean,
+        default: false,
+        required: true,
     },
     updatedAt: { type: Date, default: Date.now },
     createdAt: { type: Date, immutable: true, default: Date.now },
 });
 
 
-export default mongoose.model("Comments", CommentSchema);
+export default mongoose.model('CommentLikes', CommentLike);
 
