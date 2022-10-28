@@ -8,7 +8,7 @@ import {
     createNewCollection,
     updateCollection,
     deleteCollection,
-} from "../controllers/collection.js";
+} from "../../controllers/collection.js";
 
 
 const collectionRouter = express.Router();

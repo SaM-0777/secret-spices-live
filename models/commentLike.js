@@ -8,6 +8,7 @@ const CommentLike = mongoose.Schema({
     },
     commentId: {
         type: mongoose.Types.ObjectId,
+        ref: "Comments",
         required: true,
     },
     commentLikeStatus: {

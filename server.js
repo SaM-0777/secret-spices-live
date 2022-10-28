@@ -5,10 +5,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 
 // Routes
-import cookbookRouter from "./routes/cookbook.js";
-import collectionRouter from "./routes/collection.js";
-import recipeRouter from "./routes/recipe.js";
-import commentRouter from "./routes/comment.js";
+import { userRoutes, ownerRoutes } from "./routes/index.js";
 
 
 //App config
@@ -25,10 +22,8 @@ app.use(cors());
 app.use(morgan("dev"));
 
 // routes
-app.use("/api/cookbook", cookbookRouter);
-app.use("/api/collection", collectionRouter);
-app.use("/api/recipe", recipeRouter);
-app.use("/api/comment", commentRouter);
+app.use("/api/user", userRoutes);
+app.use("/api/owner", ownerRoutes);
 /*app.use("/", (req, res) => {
     res.status(200).render('home.ejs')
 });*/

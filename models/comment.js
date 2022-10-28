@@ -8,6 +8,7 @@ const CommentSchema = mongoose.Schema({
     },
     recipeId: {
         type: mongoose.Types.ObjectId,
+        ref: "Recipes",
         required: true,
     },
     comment: {

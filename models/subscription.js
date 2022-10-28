@@ -2,12 +2,13 @@ import mongoose from "mongoose";
 
 
 const Subscription = mongoose.Schema({
-    userId: {
+    userId: {               // the user who has subscribed
         type: String,
         required: true,
     },
     authorId: {
         type: mongoose.Types.ObjectId,
+        ref: 'Authors',
         required: true,
     },
     subscriptionStatus: {

@@ -2,13 +2,14 @@ import mongoose from "mongoose";
 
 
 const RatingSchema = mongoose.Schema({
-    userId: {
+    userId: {               // the user who has rated it.
         type: String,
         required: true,
         unique: true,
     },
     recipeId: {
         type: mongoose.Types.ObjectId,
+        ref: "Recipes",
         required: true,
     },
     rating: {

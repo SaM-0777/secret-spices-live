@@ -56,10 +56,11 @@ const RecipeSchema = mongoose.Schema({
     },
     authorId: {
         type: mongoose.Types.ObjectId,
+        ref: 'Authors',
         required: true,
     },
     cookbookId: {
-        type: [mongoose.Types.ObjectId],
+        type: [{type: mongoose.Types.ObjectId, ref: 'Cookbooks'}],
     },
     thumbnail: {
         type: String,
@@ -91,11 +92,11 @@ const RecipeSchema = mongoose.Schema({
         type: [nutrientSchema],
     },
     duration: {
-        type: [Decimal128],
+        type: Decimal128,
         required: true,  
     },
     budget: {
-        type: [Decimal128],
+        type: Number,
         required: true,
     },
     tags: {

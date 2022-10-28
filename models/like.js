@@ -7,6 +7,10 @@ const LikeSchema = mongoose.Schema({
         required: true,
         unique: true,
     },
+    recipeId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Recipes',
+    },
     likeStatus: {
         type: Boolean,
         default: false,

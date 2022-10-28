@@ -8,6 +8,7 @@ const ViewSchema = mongoose.Schema({
     },
     recipeId: {
         type: mongoose.Types.ObjectId,
+        ref: "Recipes",
         required: true,
     },
     viewStatus: {

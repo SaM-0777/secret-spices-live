@@ -37,7 +37,7 @@ const AuthorSchema = mongoose.Schema({
     },
     authorSocials: {
         type: [AuthorSocials],
-        default: ""
+        default: []
     },
     location: {
         type: [String],
@@ -58,5 +58,5 @@ const AuthorSchema = mongoose.Schema({
 });
 
 
-export default mongoose.Model('Authors', AuthorSchema);
+export default mongoose.model('Authors', AuthorSchema);
 
