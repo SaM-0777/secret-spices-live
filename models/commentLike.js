@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const CommentLike = mongoose.Schema({
+const CommentLike = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -9,11 +9,6 @@ const CommentLike = mongoose.Schema({
     commentId: {
         type: mongoose.Types.ObjectId,
         ref: "Comments",
-        required: true,
-    },
-    commentLikeStatus: {
-        type: Boolean,
-        default: false,
         required: true,
     },
     updatedAt: { type: Date, default: Date.now },

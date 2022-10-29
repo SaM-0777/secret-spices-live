@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const Subscription = mongoose.Schema({
+const Subscription = new mongoose.Schema({
     userId: {               // the user who has subscribed
         type: String,
         required: true,
@@ -9,11 +9,6 @@ const Subscription = mongoose.Schema({
     authorId: {
         type: mongoose.Types.ObjectId,
         ref: 'Authors',
-        required: true,
-    },
-    subscriptionStatus: {
-        type: Boolean,
-        default: false,
         required: true,
     },
     updatedAt: { type: Date, default: Date.now },

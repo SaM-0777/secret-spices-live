@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 
-const AuthorSocials = mongoose.Schema({
-    socailName: {
+const AuthorSocials = new mongoose.Schema({
+    socialName: {
         type: String,
         required: true,
     },
@@ -12,7 +12,7 @@ const AuthorSocials = mongoose.Schema({
     }
 });
 
-const AuthorSchema = mongoose.Schema({
+const AuthorSchema = new mongoose.Schema({
     userId: {
         type: String,
         immutable: true,

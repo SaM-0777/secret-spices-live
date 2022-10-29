@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const ReplyToComment = mongoose.Schema({
+const ReplyToComment = new mongoose.Schema({
     userId: {
         type: String,
         required: true,

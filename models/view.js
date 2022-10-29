@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const ViewSchema = mongoose.Schema({
+const ViewSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -9,11 +9,6 @@ const ViewSchema = mongoose.Schema({
     recipeId: {
         type: mongoose.Types.ObjectId,
         ref: "Recipes",
-        required: true,
-    },
-    viewStatus: {
-        type: Boolean,   // false->No    true->Yes
-        default: false,
         required: true,
     },
     updatedAt: { type: Date, default: Date.now },

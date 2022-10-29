@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const LikeSchema = mongoose.Schema({
+const LikeSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -10,11 +10,6 @@ const LikeSchema = mongoose.Schema({
     recipeId: {
         type: mongoose.Types.ObjectId,
         ref: 'Recipes',
-    },
-    likeStatus: {
-        type: Boolean,
-        default: false,
-        required: true,
     },
     updatedAt: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now, immutable: true },

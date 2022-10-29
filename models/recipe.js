@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const stepSchema = mongoose.Schema({
+const stepSchema = new mongoose.Schema({
     step: {
         type: String,
         maxLength: 500,
@@ -11,7 +11,7 @@ const stepSchema = mongoose.Schema({
     }
 });
 
-const ingridientSchema = mongoose.Schema({
+const ingridientSchema = new mongoose.Schema({
     ingridient: {
         type: String,
         maxLength: 200,
@@ -21,7 +21,7 @@ const ingridientSchema = mongoose.Schema({
     }
 });
 
-const nutrientSchema = mongoose.Schema({
+const nutrientSchema = new mongoose.Schema({
     nutrientType: {
         type: String,
         maxLength: 200,
@@ -48,7 +48,7 @@ const nutrientSchema = mongoose.Schema({
 });
 */
 
-const RecipeSchema = mongoose.Schema({
+const RecipeSchema = new mongoose.Schema({
     userId: {
         type: String,
         unique: true,

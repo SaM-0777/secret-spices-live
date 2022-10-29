@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const RatingSchema = mongoose.Schema({
+const RatingSchema = new mongoose.Schema({
     userId: {               // the user who has rated it.
         type: String,
         required: true,
