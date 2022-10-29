@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
 
-// collection
+
+// Cookbook
 const CookbookSchema = new mongoose.Schema({
     userId: {             // owner cognito userId
         type: String,
+        immutable: true,
         required: true,
-        unique: true,
     },
     authorId: {
         type: mongoose.Types.ObjectId,
         ref: 'Authors',
+        required: true,
     },
     thumbnail: {
         type: String,

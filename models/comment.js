@@ -5,11 +5,13 @@ const CommentSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
+        immutable: true,
     },
     recipeId: {
         type: mongoose.Types.ObjectId,
         ref: "Recipes",
         required: true,
+        immutable: true,
     },
     comment: {
         type: String,
@@ -18,6 +20,7 @@ const CommentSchema = new mongoose.Schema({
     },
     pinned: {
         type: Boolean,
+        default: false,
     },
     updatedAt: { type: Date, default: Date.now },
     createdAt: { type: Date, immutable: true, default: Date.now },

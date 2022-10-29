@@ -37,21 +37,9 @@ const nutrientSchema = new mongoose.Schema({
     }
 });
 
-/*const ratingSchema = mongoose.Schema({
-    userId: {
-        type: String,
-        unique: true,
-    },
-    rating: {
-        type: Number,
-    },
-});
-*/
-
 const RecipeSchema = new mongoose.Schema({
     userId: {
         type: String,
-        unique: true,
         required: true,
     },
     authorId: {
@@ -60,7 +48,8 @@ const RecipeSchema = new mongoose.Schema({
         required: true,
     },
     cookbookId: {
-        type: [{type: mongoose.Types.ObjectId, ref: 'Cookbooks'}],
+        type: [{ type: mongoose.Types.ObjectId, ref: 'Cookbooks' }],
+        default: [],
     },
     thumbnail: {
         type: String,
@@ -92,11 +81,11 @@ const RecipeSchema = new mongoose.Schema({
         type: [nutrientSchema],
     },
     duration: {
-        type: Decimal128,
+        type: Number,   // in secs
         required: true,  
     },
     budget: {
-        type: Number,
+        type: mongoose.Types.Decimal128,
         required: true,
     },
     tags: {

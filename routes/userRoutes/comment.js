@@ -1,14 +1,6 @@
 import express from "express";
 
-import {
-    getAllComments,
-    getAllCommentsByUserId,
-    getAllCommentsByRecipeId,
-    getCommentByCommentId,
-    createNewComment,
-    updateComment,
-    deleteComment,
-} from "../controllers/comment.js";
+import { getAllComments, createComment, updateComment, deleteComment } from "../../controllers/comment.js";
 
 
 const commentRouter = express.Router();
@@ -18,43 +10,28 @@ const commentRouter = express.Router();
  * Method   Desc
  * GET      Get all comments
  */
-commentRouter.get('/', getAllComments);
+commentRouter.get('/all', getAllComments);
+
 
 /**
  * Method   Desc
- * GET      Get all comments for a user id
+ * POST     Create a comment
  */
-commentRouter.get('/byuser/:userId', getAllCommentsByUserId);
+commentRouter.post('/create/new', createComment);
+
 
 /**
  * Method   Desc
- * GET      Get all comments for a recipe id
+ * PATCH    Update a comment
  */
-commentRouter.get('/byrecipe/:recipeId', getAllCommentsByRecipeId);
+commentRouter.patch('/update/:commentId', updateComment);
+
 
 /**
  * Method   Desc
- * GET      Get a comment for a comment id
+ * DELETE   Delete a comment
  */
-commentRouter.get('/bycomment/:commentId', getCommentByCommentId);
-
-/**
- * Method   Desc
- * POST     To create a new comment
- */
-commentRouter.post('/new', createNewComment);
-
-/**
- * Method   Desc
- * PATCH    To update a particular comment for a comment id
- */
-commentRouter.patch('/:commentId', updateComment);
-
-/**
- * Method   Desc
- * DELETE   To delete a particular comment for a comment id
- */
-commentRouter.delete('/:commentId', deleteComment);
+commentRouter.delete('/delete/:commentId', deleteComment);
 
 
 export default commentRouter;

@@ -13,11 +13,11 @@ export async function getAllAuthors (req, res) {
 };
 
 // working
-export async function getAuthorsDisplay(req, res) {
+export async function getAuthorsDisplay (req, res) {
     const query = Author.aggregate([
         {
             $lookup: {
-                from: "Recipes",
+                from: "recipes",
                 localField: "_id",
                 foreignField: "authorId",
                 as: "Recipes"
@@ -25,7 +25,7 @@ export async function getAuthorsDisplay(req, res) {
         },
         {
             $lookup: {
-                from: "Subscriptions",
+                from: "subscriptions",
                 localField: "_id",
                 foreignField: "authorId",
                 as: "Subscriptions"
@@ -38,7 +38,7 @@ export async function getAuthorsDisplay(req, res) {
                 recipeCount: { $size: "$Recipes" },
                 subscriptionCount: { $size: "$Subscriptions" }
             }
-        }
+        },
     ]).allowDiskUse(true)
 
     query.exec(function (error, authorDataForDisplay) {
@@ -59,19 +59,19 @@ export async function getAuthorDetailsByAuthorId (req, res) {
         {
             // Recipe lookup
             $lookup: {
-                from: "Recipes",
+                from: "recipes",
                 let: { "authorId": "$_id" },
                 pipeline: [
                     { "$match": { "$expr": { "$eq": ["$authorId", "$$authorId"] } } },
                     // Recipe Views lookup
                     {"$lookup": {
-                        "from": "Views", "let": { "recipeId": "$_id" },
+                        "from": "views", "let": { "recipeId": "$_id" },
                         "pipeline": [{ "$match": { "$expr": { "$eq": ["$recipeId", "$$recipeId"] } } }],
                         "as": "Views",
                     }},
                     // Recipe Ratings lookup
                     {"$lookup": {
-                        "from": "Ratings", "let": { "recipeId": "$_id" },
+                        "from": "ratings", "let": { "recipeId": "$_id" },
                         "pipeline": [{ "$match": { "$expr": { "$eq": ["$recipeId", "$$recipeId"] } } }],
                         "as": "Ratings",
                     }},
@@ -84,7 +84,7 @@ export async function getAuthorDetailsByAuthorId (req, res) {
         {
             // Cookbook lookup
             $lookup: {
-                from: "Cookbooks",
+                from: "cookbooks",
                 let: { "authorId": "$_id"},
                 pipeline: [
                     { "$match": { "$expr": { "$eq": ["$authorId", "$$authorId"] } } },
@@ -96,7 +96,7 @@ export async function getAuthorDetailsByAuthorId (req, res) {
         {
             //Subscription lookup
             $lookup: {
-                from: "Subscriptions",
+                from: "subscriptions",
                 let: { "authorId": "$_id" },
                 pipeline: [
                     { "$match": {"$expr": { "$eq": ["$authorId", "$$authorId"]}}},
@@ -112,6 +112,8 @@ export async function getAuthorDetailsByAuthorId (req, res) {
                 "banner": 1,
                 "name": 1,
                 "description": 1,
+                "Cookbooks": 1,
+                "Recipes": 1,
                 "recipeCount": { "$size": "$Recipes" },
                 "subscriptionCount": {"$size": "$Subscriptions"}
             }
@@ -124,7 +126,7 @@ export async function getAuthorDetailsByAuthorId (req, res) {
     })
 };
 
-// working
+// working - *security
 export async function createAuthor (req, res) {
     const { userId, thumbnail, banner, name, description, authorSocials, location } = req.body
 
@@ -146,7 +148,7 @@ export async function createAuthor (req, res) {
     }
 };
 
-// working
+// working - *security
 export async function updateAuthor(req, res) {
     const { authorId } = req.params
     const { thumbnail, banner, name, description, authorSocials } = req.body

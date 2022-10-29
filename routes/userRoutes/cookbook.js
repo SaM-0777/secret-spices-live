@@ -1,61 +1,37 @@
 import express from "express";
 
-import {
-    getAllCollections,
-    getAllCollectionsByUserId,
-    getAllCollectionsByCookbookId,
-    getCollectionByCollectionId,
-    createNewCollection,
-    updateCollection,
-    deleteCollection,
-} from "../../controllers/collection.js";
+import { getAllCookbooks, getCookbooksDisplay, createCookbook, updateCookbook } from "../../controllers/cookbook.js";
 
 
-const collectionRouter = express.Router();
+const CookbookRouter = express.Router();
 
 
 /**
  * Method   Desc
- * GET      Get all collection
+ * GET      Get all Cookbooks
  */
-collectionRouter.get('/', getAllCollections);
+CookbookRouter.get('/all', getAllCookbooks);
 
 /**
  * Method   Desc
- * GET      Get all collection for a user id
+ * GET      Get all Cookbooks
  */
-collectionRouter.get('/byuser/:userId', getAllCollectionsByUserId);
+CookbookRouter.get('/display/all', getCookbooksDisplay);
+
 
 /**
  * Method   Desc
- * GET      Get all collection for a cookbook id
+ * POST     Create a cookbook
  */
-collectionRouter.get('/bycookbook/:cookbookId', getAllCollectionsByCookbookId);
+CookbookRouter.post('/create/new', createCookbook);
+
 
 /**
  * Method   Desc
- * GET      Get a particular collection for a collection id
+ * PATCH    Update a cookbook
  */
-collectionRouter.get('/bycollection/:collectionId', getCollectionByCollectionId);
-
-/**
- * Method   Desc
- * POST     To create a new collection
- */
-collectionRouter.post('/new', createNewCollection);
-
-/**
- * Method   Desc
- * PATCH    To update a particular collection for a collection id
- */
-collectionRouter.patch('/:collectionId', updateCollection);
-
-/**
- * Method   Desc
- * DELETE   To delete a particular collection for a collection id
- */
-collectionRouter.delete('/:collectionId', deleteCollection);
+CookbookRouter.patch('/update/:cookbookId', updateCookbook);
 
 
-export default collectionRouter;
+export default CookbookRouter;
 
