@@ -5,11 +5,13 @@ const ReplyToComment = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
+        immutable: true,
     },
     commentId: {
         type: mongoose.Types.ObjectId,
         ref: "Comments",
         required: true,
+        immutable: true,
     },
     reply: {
         type: String,
