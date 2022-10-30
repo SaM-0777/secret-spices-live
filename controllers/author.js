@@ -87,8 +87,8 @@ export async function getAuthorDetailsByAuthorId (req, res) {
                 from: "cookbooks",
                 let: { "authorId": "$_id"},
                 pipeline: [
-                    { "$match": { "$expr": { "$eq": ["$authorId", "$$authorId"] } } },
-                    {"$project": {"thumbnail": 1, "name": 1, "updatedAt": 1}}
+                    { "$match": { "$expr": { "$eq": ["$authorId", "$$authorId"]}}},
+                    { "$project": { "thumbnail": 1, "name": 1, "description": 1, "updatedAt": 1}}
                 ],
                 as: "Cookbooks",
             },
@@ -115,6 +115,7 @@ export async function getAuthorDetailsByAuthorId (req, res) {
                 "Cookbooks": 1,
                 "Recipes": 1,
                 "recipeCount": { "$size": "$Recipes" },
+                "cookbookCount": { "$size": "$Cookbooks" },
                 "subscriptionCount": {"$size": "$Subscriptions"}
             }
         }
@@ -166,6 +167,7 @@ export async function updateAuthor(req, res) {
     author.name = name || author.name
     author.description = description || author.description
     author.authorSocials = authorSocials || author.authorSocials
+    author.updatedAt = new Date.now()
 
     try {
         const updatedAuthor = await author.save()

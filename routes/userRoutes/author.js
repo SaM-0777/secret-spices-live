@@ -32,9 +32,10 @@ AuthorRouter.post('/create/new', createAuthor);
 
 /**
  * Method   Desc
- * PATCH     Update an Author
+ * PATCH    Update an Author
  */
 AuthorRouter.patch('/update/:authorId', updateAuthor);
+
 
 
 

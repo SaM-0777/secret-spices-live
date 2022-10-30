@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getAllCookbooks, getCookbooksDisplay, createCookbook, updateCookbook } from "../../controllers/cookbook.js";
+import { getAllCookbooks, getCookbooksDisplay, getCookbookDetailsByCookbookId, createCookbook, updateCookbook } from "../../controllers/cookbook.js";
 
 
 const CookbookRouter = express.Router();
@@ -17,6 +17,13 @@ CookbookRouter.get('/all', getAllCookbooks);
  * GET      Get all Cookbooks
  */
 CookbookRouter.get('/display/all', getCookbooksDisplay);
+
+
+/**
+ * Method   Desc
+ * GET      Get all Cookbooks
+ */
+CookbookRouter.get('/details/:cookbookId', getCookbookDetailsByCookbookId);
 
 
 /**
