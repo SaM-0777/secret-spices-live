@@ -5,11 +5,13 @@ const LikeSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
-        unique: true,
+        immutable: true,
     },
     recipeId: {
         type: mongoose.Types.ObjectId,
         ref: 'Recipes',
+        immutable: true,
+        required: true,
     },
     updatedAt: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now, immutable: true },
