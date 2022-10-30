@@ -15,20 +15,18 @@ CommentLikeRouter.get('/all', getAllCommentLikes);
 
 /**
  * Method   Desc
- * POST     Create a Comment like
+ * POST     Create a Comment Like
  */
 CommentLikeRouter.post('/create/new', createCommentLike);
 
 
 /**
  * Method   Desc
- * DELETE   Delete a Views
+ * DELETE   Delete a Comment Like
  */
 CommentLikeRouter.delete('/delete/:commentLikeId', deleteCommentLike);
 
 
 
 export default CommentLikeRouter;
-
-
 
