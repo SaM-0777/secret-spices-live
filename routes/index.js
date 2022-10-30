@@ -7,6 +7,7 @@ import ViewRouter from "./userRoutes/view.js";
 import LikeRouter from "./userRoutes/like.js";
 import RatingRouter from "./userRoutes/rating.js";
 import commentRouter from "./userRoutes/comment.js";
+import CommentLikeRouter from "./userRoutes/commentLike.js";
 import ReplyToCommentRouter from "./userRoutes/replyToComment.js";
 
 
@@ -21,5 +22,6 @@ userRoutes.use('/view', ViewRouter);
 userRoutes.use('/like', LikeRouter);
 userRoutes.use('/rating', RatingRouter);
 userRoutes.use('/comment', commentRouter);
+userRoutes.use('/commentlike', CommentLikeRouter);
 userRoutes.use('/replytocomment', ReplyToCommentRouter);
 
