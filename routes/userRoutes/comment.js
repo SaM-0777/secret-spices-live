@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getAllComments, createComment, updateComment, deleteComment } from "../../controllers/comment.js";
+import { getAllComments, getCommentsByRecipeId, createComment, updateComment, deleteComment } from "../../controllers/comment.js";
 
 
 const commentRouter = express.Router();
@@ -11,6 +11,13 @@ const commentRouter = express.Router();
  * GET      Get all comments
  */
 commentRouter.get('/all', getAllComments);
+
+
+/**
+ * Method   Desc
+ * GET      Get all comments by Recipe id
+ */
+commentRouter.get('/commentsbyrecipe/:recipeId', getCommentsByRecipeId);
 
 
 /**
