@@ -5,15 +5,16 @@ const RatingSchema = new mongoose.Schema({
     userId: {               // the user who has rated it.
         type: String,
         required: true,
-        unique: true,
+        immutable: true,
     },
     recipeId: {
         type: mongoose.Types.ObjectId,
         ref: "Recipes",
         required: true,
+        immutable: true,
     },
     rating: {
-        type: Decimal128,
+        type: mongoose.Types.Decimal128,
         required: true,
     },
     updatedAt: { type: Date, default: Date.now },
