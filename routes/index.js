@@ -10,6 +10,7 @@ import commentRouter from "./userRoutes/comment.js";
 import CommentLikeRouter from "./userRoutes/commentLike.js";
 import ReplyToCommentRouter from "./userRoutes/replyToComment.js";
 import ReplyLikeRouter from "./userRoutes/replyLike.js";
+import SubscriptionRouter from "./userRoutes/subscription.js";
 
 
 export const userRoutes = express.Router();
@@ -26,4 +27,5 @@ userRoutes.use('/comment', commentRouter);
 userRoutes.use('/commentlike', CommentLikeRouter);
 userRoutes.use('/replytocomment', ReplyToCommentRouter);
 userRoutes.use('/replylike', ReplyLikeRouter);
+userRoutes.use('/subscription', SubscriptionRouter);
 
