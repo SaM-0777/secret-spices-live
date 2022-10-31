@@ -1,7 +1,7 @@
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
+// import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 // Routes
@@ -10,10 +10,7 @@ import { userRoutes, ownerRoutes } from "./routes/index.js";
 
 //App config
 const app = express();
-dotenv.config();
-
-// app settings
-app.set('view engine', 'ejs');
+if (process.env.NODE_ENV !== "production") dotenv.config()
 
 // middleware
 app.use(express.json({ type: 'application/json' }));
@@ -24,9 +21,6 @@ app.use(morgan("dev"));
 // routes
 app.use("/api/user", userRoutes);
 app.use("/api/owner", ownerRoutes);
-/*app.use("/", (req, res) => {
-    res.status(200).render('home.ejs')
-});*/
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500
     const errorMessage = err.message || "something else"
