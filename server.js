@@ -52,7 +52,7 @@ async function connectToDB () {
 mongoose.connection.on("disconnected", () => console.log("MongoDB Disconnected"));
 
 // App listen
-app.listen(process.env.PORT || 8800, () => {
+app.listen(process.env.PORT, () => {
     connectToDB()
     console.log("connected to backend")
 });
