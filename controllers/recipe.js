@@ -41,7 +41,7 @@ export async function getRecipesDisplay(req, res) {
             },
         },
         {
-            "$project": {"Author._id": 1, "Author.name": 1, "Author.thumbnail": 1, "thumbnail": 1, "title": 1, "duration": 1, "vegOrNonVeg": 1, "createdAt": 1, "likeCount": {"$size": "$Likes"}, "viewCount": {"$size": "$Views"} }
+            "$project": {"Author._id": 1, "Author.name": 1, "Author.thumbnail": 1, "thumbnail": 1, "title": 1, "servings": 1, "duration": 1, "vegOrNonVeg": 1, "createdAt": 1, "likeCount": {"$size": "$Likes"}, "viewCount": {"$size": "$Views"} }
         },
         {
             "$limit": 15,
