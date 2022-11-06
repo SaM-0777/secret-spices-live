@@ -74,10 +74,10 @@ export async function getRecipeDetailsByRecipeId(req, res) {
         },
         {
             "$lookup": {
-                "from": "ratings",
+                "from": "comments",
                 "localField": "_id",
                 "foreignField": "recipeId",
-                "as": "Ratings",
+                "as": "Comments",
             },
         },
         {
@@ -97,7 +97,7 @@ export async function getRecipeDetailsByRecipeId(req, res) {
             },
         },
         {
-            "$project": { "heroBanner": 1, "title": 1, "description": 1, "servings": 1, "nutrients": 1, "Author.thumbnail": 1, "Author.name": 1, "Author.authorSocials": 1, "Author.isVerified": 1, "viewCount": { "$size": "$Views" }, "Rating": { "Rating": { "$avg": "$Ratings.rating" }, "ratingCount": { "$size": "$Ratings" } }, "steps": 1, "ingridients": 1, "duration": 1, "budget": 1, "likeCount": {"$size": "$Likes"} }
+            "$project": { "heroBanner": 1, "title": 1, "description": 1, "servings": 1, "nutrients": 1, "Author.thumbnail": 1, "Author.name": 1, "Author.authorSocials": 1, "Author.isVerified": 1, "viewCount": { "$size": "$Views" }, "commentCount": { "$size": "$Comments"}, "steps": 1, "ingridients": 1, "duration": 1, "budget": 1, "likeCount": {"$size": "$Likes"} }
         },
     ])
 
