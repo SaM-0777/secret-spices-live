@@ -76,7 +76,7 @@ export async function getAuthorDetailsByAuthorId (req, res) {
                         "as": "Ratings",
                     }},
                     // Recipes projections
-                    { "$project": { "authorId": 1, "thumbnail": 1, "title": 1, "description": 1, "Ratings": { "avgRating": { "$avg": "$Ratings.rating"}, "ratingCount": {"$size": "$Ratings"}}, "duration": 1, "vegOrNonVeg": 1, "viewCount": { "$size": "$Views" }, "createdAt": 1 } }
+                    { "$project": { "thumbnail": 1, "title": 1, "description": 1, "Ratings": { "avgRating": { "$avg": "$Ratings.rating"}, "ratingCount": {"$size": "$Ratings"}}, "duration": 1, "vegOrNonVeg": 1, "viewCount": { "$size": "$Views" }, "createdAt": 1 } }
                 ],
                 as: "Recipes"
             },
@@ -108,6 +108,7 @@ export async function getAuthorDetailsByAuthorId (req, res) {
         {
             // Author projection
             $project: {
+                "_id": 1,
                 "thumbnail": 1,
                 "banner": 1,
                 "name": 1,
