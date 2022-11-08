@@ -109,10 +109,15 @@ export async function getAuthorDetailsByAuthorId (req, res) {
             // Author projection
             $project: {
                 "_id": 1,
+                "userId": 1,
                 "thumbnail": 1,
                 "banner": 1,
                 "name": 1,
                 "description": 1,
+                "authorSocials": 1,
+                "location": 1,
+                "isVerified": 1,
+                "createdAt": 1,
                 "Cookbooks": 1,
                 "Recipes": 1,
                 "recipeCount": { "$size": "$Recipes" },
