@@ -9,7 +9,7 @@ const RatingSchema = new mongoose.Schema({
     },
     cookbookId: {
         type: mongoose.Types.ObjectId,
-        ref: "cookbooks",
+        ref: "Cookbooks",
         required: true,
         immutable: true,
     },
