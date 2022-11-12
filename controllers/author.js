@@ -89,7 +89,7 @@ export async function getAuthorDetailsByAuthorId (req, res) {
                         "as": "Ratings",
                     }
                     },
-                    { "$project": { "_id": 1, "thumbnail": 1, "name": 1, "Ratings": {"avgRating": {"$avg": "$Ratings.rating"}, "ratingCount": {"$size": "$Ratings"}}, "createdAt": 1 }}
+                    { "$project": { "_id": 1, "thumbnail": 1, "name": 1, "CookbookRatings": {"avgRating": {"$avg": "$Ratings.rating"}, "ratingCount": {"$size": "$Ratings"}}, "createdAt": 1 }}
                 ],
                 as: "Cookbooks",
             },
