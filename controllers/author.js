@@ -33,6 +33,7 @@ export async function getAuthorsDisplay (req, res) {
         },
         {
             $project: {
+                _id: 1,
                 thumbnail: 1,
                 name: 1,
                 recipeCount: { $size: "$Recipes" },
@@ -63,20 +64,14 @@ export async function getAuthorDetailsByAuthorId (req, res) {
                 let: { "authorId": "$_id" },
                 pipeline: [
                     { "$match": { "$expr": { "$eq": ["$authorId", "$$authorId"] } } },
-                    // Recipe Views lookup
+                    // Recipe Likes lookup
                     {"$lookup": {
-                        "from": "views", "let": { "recipeId": "$_id" },
+                        "from": "likes", "let": { "recipeId": "$_id" },
                         "pipeline": [{ "$match": { "$expr": { "$eq": ["$recipeId", "$$recipeId"] } } }],
-                        "as": "Views",
-                    }},
-                    // Recipe Ratings lookup
-                    {"$lookup": {
-                        "from": "ratings", "let": { "recipeId": "$_id" },
-                        "pipeline": [{ "$match": { "$expr": { "$eq": ["$recipeId", "$$recipeId"] } } }],
-                        "as": "Ratings",
+                        "as": "Likes",
                     }},
                     // Recipes projections
-                    { "$project": { "thumbnail": 1, "title": 1, "description": 1, "Ratings": { "avgRating": { "$avg": "$Ratings.rating"}, "ratingCount": {"$size": "$Ratings"}}, "duration": 1, "vegOrNonVeg": 1, "viewCount": { "$size": "$Views" }, "createdAt": 1 } }
+                    { "$project": { "thumbnail": 1, "title": 1, "duration": 1, "vegOrNonVeg": 1, "likes": { "$size": "$Likes" }, "createdAt": 1 } }
                 ],
                 as: "Recipes"
             },
@@ -87,8 +82,14 @@ export async function getAuthorDetailsByAuthorId (req, res) {
                 from: "cookbooks",
                 let: { "authorId": "$_id"},
                 pipeline: [
-                    { "$match": { "$expr": { "$eq": ["$authorId", "$$authorId"]}}},
-                    { "$project": { "thumbnail": 1, "name": 1, "description": 1, "updatedAt": 1}}
+                    { "$match": { "$expr": { "$eq": ["$authorId", "$$authorId"] } } },
+                    {"$lookup": {
+                        "from": "ratings", "let": { "cookbookId": "$_id" },
+                        "pipeline": [{ "$match": { "$expr": { "$eq": ["$cookbookId", "$$cookbookId"] } } },],
+                        "as": "Ratings",
+                    }
+                    },
+                    { "$project": { "_id": 1, "thumbnail": 1, "name": 1, "Ratings": {"avgRating": {"$avg": "Ratings.rating"}, "ratingCount": {"$size": "$Ratings"}}, "createdAt": 1 }}
                 ],
                 as: "Cookbooks",
             },
