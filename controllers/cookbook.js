@@ -39,20 +39,43 @@ export async function getCookbookDetailsByCookbookId(req, res) {
         },
         {
             $lookup: {
+                from: "authors",
+                let: { "authorId": "$authorId" },
+                pipeline: [
+                    {"$match": {"$expr": {"$eq": ["$$authorId", "$_id"]}}},
+                    { "$project": {"name": 1, "isVerified": 1, }}
+                ],
+                "as": "Author",
+            },
+        },
+        {
+            $lookup: {
                 from: "recipes",
                 let: { "cookbookId": "$_id" },
                 pipeline: [
-                    {"$match": {"$expr": {"$in": ["$$cookbookId", "$cookbookId"]}}},
-                    // Ratings lookup
-                    {"$lookup": {"from": "ratings", "let": {"recipeId": "$_id"}, pipeline: [
-                        {"$match": {"$expr": {"$eq": ["$recipeId", "$$recipeId"]}}}
-                    ], "as": "Ratings"}},
-                    // Views lookup
-                    {"$lookup": {"from": "views", "localField": "_id", "foreignField": "recipeId", "as": "Views"}},
-                    { "$project": { "thumbnail": 1, "title": 1, "Rating": { "$avg": "Ratings.rating" }, "ratingCount": { "$size": "$Ratings" }, "viewCount": { "$size": "$Views" }, "duration": 1, "vegOrNonVeg": 1, "createdAt": 1}}
+                    { "$match": { "$expr": { "$in": ["$$cookbookId", "$cookbookId"] } } },
+                    {"$lookup": {
+                        "from": "likes", "let": { "recipeId": "$_id" },
+                        "pipeline": [{ "$match": { "$expr": { "$eq": ["$recipeId", "$$recipeId"] } } }],
+                        "as": "Likes",
+                    }},
+                    { "$project": { "thumbnail": 1, "title": 1, "duration": 1, "likes": { "$size": "$Likes" }, "vegOrNonVeg": 1, "createdAt": 1 } }
                 ],
                 "as": "Recipes"
             },
+        },
+        {
+            $lookup: {
+                from: "ratings",
+                let: { "cookbookId": "$_id" },
+                pipeline: [
+                    {"$match": {"$expr": {"$eq": ["$cookbookId", "$$cookbookId"]}}},
+                ],
+                "as": "Ratings",
+            },
+        },
+        {
+            $project: { "_id": 1, "name": 1, "description": 1, "thumbnail": 1, "Author": 1, "Recipes": 1, "CookbookRating": {"avgRating": {"$avg": "$Ratings.rating"}, "ratingCount": {"$size": "$Ratings"}} },
         },
     ]).allowDiskUse(true)
 
