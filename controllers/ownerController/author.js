@@ -2,6 +2,20 @@ import mongoose from "mongoose";
 import Author from "../../models/author.js";
 
 
+export async function getCurrentAuthenticatedUser(req, res) {
+    const { userId } = req.params
+
+    const query = Author.aggregate([
+        { $match: { userId: userId } },
+    ]).allowDiskUse(true)
+
+    query.exec(function (error, currentUser) {
+        if (error) return res.status(404).json({ error: error.message })
+        res.status(200).json(currentUser)
+    })
+};
+
+
 export async function getAuthorDetailsByUserId(req, res) {
     const { userId } = req.params
     
