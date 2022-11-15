@@ -13,12 +13,39 @@ export async function getAllSubscriptions(req, res) {
 };
 
 
+export async function getAllSubscriptionsByAuthorId(req, res) {
+    const { userId, authorId } = req.params             // subbedAuthorId -> currentUserAuthorId who has sent the request && authorId -> to the author it wants to get
+
+    const query = Subscription.aggregate([
+        { $match: { authorId: mongoose.Types.ObjectId(authorId) } },
+        { $match: { $expr: { $eq: ["$status", true] } } },
+        { $lookup: { "from": "authors", "let": { "subbedAuthor": "$subbedAuthorId" }, "pipeline": [
+            { "$match": { "$expr": { "$eq": ["$_id", "$$subbedAuthor"] } } },
+            {"$lookup": { "from": "subscriptions", "let": {"authorId": "$_id"}, "pipeline": [
+                { "$match": { "$expr": { "$eq": ["$authorId", "$$authorId"] } } },
+                { "$match": { "$expr": { "$eq": ["$status", true] } } },
+                { "$match": { subbedAuthorId: mongoose.Types.ObjectId(userId) } },
+                /*{ "$project": { "isSubbed": { "$expr": { "$eq": [] } }, } }*/
+            ], "as": "UserSubbedAuthors" }},
+            { "$project": { "_id": 1, "name": 1, "thumbnail": 1, "UserSubbedAuthors._id": 1 } },
+        ], "as": "SubscribedAuthors" } },
+        { $project: { "_id": 0, "SubscribedAuthors": 1 } }
+    ]).allowDiskUse(true)
+
+    query.exec(function (error, subs) {
+        if (error) res.status(500).json({ error: error.message })
+        else res.status(200).json(subs)
+    })
+};
+
+
 export async function createSubscription(req, res) {
-    const { userId, authorId } = req.body
+    const { subbedAuthorId, authorId, status } = req.body
 
     const newSubscription = new Subscription({
-        userId,
+        subbedAuthorId: mongoose.Types.ObjectId(subbedAuthorId),
         authorId: mongoose.Types.ObjectId(authorId),
+        status
     })
 
     try {

@@ -10,6 +10,7 @@ const AuthorOwnerRouter = express.Router();
  * Method   Desc
  * GET      Get Current Authenticated User by userId
  */
+// verify aws-cognito-pem-jwt
 AuthorOwnerRouter.get('/:userId', getCurrentAuthenticatedUser);
 
 

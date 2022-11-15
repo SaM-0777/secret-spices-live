@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getAllSubscriptions, createSubscription, deleteSubscription } from "../../controllers/subscriptions.js";
+import { getAllSubscriptions, getAllSubscriptionsByAuthorId, createSubscription, deleteSubscription } from "../../controllers/subscriptions.js";
 
 
 const SubscriptionRouter = express.Router();
@@ -11,6 +11,13 @@ const SubscriptionRouter = express.Router();
  * GET      Get all Subscriptions
  */
 SubscriptionRouter.get('/all', getAllSubscriptions);
+
+
+/**
+ * Method   Desc
+ * GET      Get all Subscriptions by authorId (creator)
+ */
+SubscriptionRouter.get('/author/:authorId/:userId', getAllSubscriptionsByAuthorId);
 
 
 /**
