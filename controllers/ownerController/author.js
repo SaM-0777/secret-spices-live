@@ -100,6 +100,25 @@ export async function getAuthorDetailsByUserId(req, res) {
         res.status(200).json(authorDetailsByUserId)
     })
 
+};
+
+
+export async function getAuthorAccountById(req, res) {
+    const { authorId, userId } = req.params
+
+    console.log(authorId, userId)
+
+    const query = Author.aggregate([
+        { $match: { $expr: { $eq: ["$_id", mongoose.Types.ObjectId(authorId)] } } },
+        { $project: { "_id": 1, "thumbnail": 1, "name": 1, "description": 1, "authorSocials": 1, "isVerified": 1 } },
+    ])
+
+    query.exec(function (error, newAuthor) {
+        if (error) res.status(404).json({ message: error.message })
+        else res.status(200).json(newAuthor)
+    })
 }
+
+
 
 

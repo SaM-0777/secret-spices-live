@@ -30,7 +30,7 @@ const AuthorSchema = new mongoose.Schema({
         required: true,
         maxLength: 60,
     },
-    description: {
+    description: {      // bio
         type: String,
         required: true,
         maxLength: 5000,

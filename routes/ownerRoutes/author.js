@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getAuthorDetailsByUserId, getCurrentAuthenticatedUser } from "../../controllers/ownerController/author.js";
+import { getAuthorDetailsByUserId, getCurrentAuthenticatedUser, getAuthorAccountById } from "../../controllers/ownerController/author.js";
 
 
 const AuthorOwnerRouter = express.Router();
@@ -12,6 +12,13 @@ const AuthorOwnerRouter = express.Router();
  */
 // verify aws-cognito-pem-jwt
 AuthorOwnerRouter.get('/:userId', getCurrentAuthenticatedUser);
+
+
+/**
+ * Method   Desc
+ * GET      Get Author-Account Details by authorId
+ */
+AuthorOwnerRouter.get('/account/:authorId', getAuthorAccountById);
 
 
 /**
