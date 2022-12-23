@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+/*import mongoose from "mongoose";
 
 
 const AuthorSocials = new mongoose.Schema({
@@ -60,3 +60,4 @@ const AuthorSchema = new mongoose.Schema({
 
 export default mongoose.model('Authors', AuthorSchema);
 
+*/

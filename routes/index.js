@@ -1,6 +1,6 @@
 import express from "express";
 
-import AuthorRouter from "./userRoutes/author.js";
+// import AuthorRouter from "./userRoutes/author.js";
 import CookbookRouter from "./userRoutes/cookbook.js";
 import RecipeRouter from "./userRoutes/recipe.js";
 import LikeRouter from "./userRoutes/like.js";
@@ -11,14 +11,14 @@ import ReplyToCommentRouter from "./userRoutes/replyToComment.js";
 import ReplyLikeRouter from "./userRoutes/replyLike.js";
 import SubscriptionRouter from "./userRoutes/subscription.js";
 
-import AuthorOwnerRouter from "./ownerRoutes/author.js";
+// import AuthorOwnerRouter from "./ownerRoutes/author.js";
 
 
 export const userRoutes = express.Router();
 export const ownerRoutes = express.Router();
 
 
-userRoutes.use('/author', AuthorRouter);
+// userRoutes.use('/author', AuthorRouter);
 userRoutes.use('/cookbook', CookbookRouter);
 userRoutes.use('/recipe', RecipeRouter);
 userRoutes.use('/like', LikeRouter);
@@ -29,5 +29,5 @@ userRoutes.use('/replytocomment', ReplyToCommentRouter);
 userRoutes.use('/replylike', ReplyLikeRouter);
 userRoutes.use('/subscription', SubscriptionRouter);
 
-ownerRoutes.use('/author', AuthorOwnerRouter)
+// ownerRoutes.use('/author', AuthorOwnerRouter)
 

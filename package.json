@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SaM-0777/secret-spices-test-api.git"
+    "url": ""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SaM-0777/secret-spices-test-api/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/SaM-0777/secret-spices-test-api#readme",
+  "homepage": "",
   "dependencies": {
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
