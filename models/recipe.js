@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const stepSchema = new mongoose.Schema({
+/*const stepSchema = new mongoose.Schema({
     step: {
         type: String,
         maxLength: 500,
@@ -9,9 +9,9 @@ const stepSchema = new mongoose.Schema({
     image: {
         type: String,
     }
-});
+});*/
 
-const ingridientSchema = new mongoose.Schema({
+const IngridientSchema = new mongoose.Schema({
     ingridient: {
         type: String,
         maxLength: 200,
@@ -21,91 +21,91 @@ const ingridientSchema = new mongoose.Schema({
     }
 });
 
-const nutrientSchema = new mongoose.Schema({
-    nutrientType: {
+const NutrientSchema = new mongoose.Schema({
+    nutrientType: {     // fat, calories, carbs, protein, sodium etc..
         type: String,
         maxLength: 200,
     },
     nutrientValue: {
         type: Number,
     },
-    unit: {
+    unit: {             // mg, mug etc..
         type: String,
     },
-    image: {
-        type: String,
-    }
 });
 
 const RecipeSchema = new mongoose.Schema({
-    userId: {
+    /* userId: {
         type: String,
-        required: true,
+        // required: true,
     },
     authorId: {
         type: mongoose.Types.ObjectId,
         ref: 'Authors',
-        required: true,
-    },
-    cookbookId: {
+        // required: true,
+    },*/
+    /* cookbookId: {
         type: [{ type: mongoose.Types.ObjectId, ref: 'Cookbooks' }],
         default: [],
+    },*/
+    RecipeNumber: {
+        type: Number,
     },
-    thumbnail: {
+    Thumbnail: {
         type: String,
         required: true,
     },
-    heroBanner: {
+    HeroBanner: {
         type: [String],
-        required: true,
+        // required: true,
     },
-    title: {
+    Title: {
         type: String,
         required: true,
         maxLength: 60,
     },
-    description: {
+    Description: {
         type: String,
-        required: true,
+        // required: true,
         maxLength: 2000,
     },
-    steps: {
-        type: [stepSchema],
+    Instructions: {
+        type: [String],
         required: true,
     },
-    ingridients: {
-        type: [ingridientSchema],
+    Ingridients: {
+        type: [String],
         required: true,
     },
-    nutrients: {
-        type: [nutrientSchema],
+    Nutrients: {
+        type: [NutrientSchema],
     },
-    duration: {
+    /*duration: {
         type: Number,   // in secs
         required: true,  
     },
     budget: {
         type: mongoose.Types.Decimal128,
         required: true,
-    },
-    tags: {
+    },*/
+    Tags: {
         type: [String],
-        required: true,
+        // required: true,
     },
-    servings: {
+    Servings: {
         type: Number,
-        required: true,
+        // required: true,
     },
-    categories: {
+    Categories: {
         type: [String],
-        required: true,
+        // required: true,
     },
-    vegOrNonVeg: {
-        type: Boolean,  // 0->Veg   1->NonVeg
-        required: true,
+    Vegan: {
+        type: Boolean,  // 0->NonVeg   1->Veg
+        // required: true,
     },
-    updatedAt: { type: Date, default: Date.now },
-    createdAt: { type: Date, immutable: true, default: Date.now },
+    CreatedAt: { type: Date, immutable: true, default: Date.now },
+    UpdatedAt: { type: Date, default: Date.now },
 });
 
 

@@ -21,6 +21,7 @@ app.use(morgan("dev"));
 // routes
 app.use("/api/user", userRoutes);
 app.use("/api/owner", ownerRoutes);
+// app.use("/api/admin", adminRouter);
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500
     const errorMessage = err.message || "something else"
