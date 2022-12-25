@@ -35,20 +35,11 @@ app.use((err, req, res, next) => {
 
 
 // DB config
-async function connectToDB () {
-    try {
-        await mongoose.connect(process.env.MONGO);
-        console.log("Connected to Mongodb");
-    } catch (error) {
-        console.log(error)
-        throw error;
-    }
-};
-mongoose.connection.on("disconnected", () => console.log("MongoDB Disconnected"));
-
-// App listen
-app.listen(process.env.PORT, () => {
-    connectToDB()
-    console.log("connected to backend")
+mongoose.connect(process.env.MONGO, () => {
+    app.listen(process.env.PORT, () => {
+        // connectToDB()
+        console.log("connected")
+    })
 });
+mongoose.connection.on("disconnected", () => console.log("MongoDB Disconnected"));
 
