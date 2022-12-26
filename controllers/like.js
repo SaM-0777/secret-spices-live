@@ -14,24 +14,40 @@ export async function getAllLikes(req, res) {
 
 
 export async function createLike(req, res) {
-    const { userId, recipeId } = req.body
-
-    const like = new Like({
-        userId,
-        recipeId: mongoose.Types.ObjectId(recipeId),
-    })
+    const { userId, recipeId } = req.body       // userID: xxxx-xxxx-xxxx
+    let existingLike
 
     try {
-        const newLike = await like.save()
-        res.status(200).json(newLike)
+        existingLike = await Like.find({ userId: userId, recipeId: recipeId })
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        
+    }
+
+    if (existingLike) {
+        try {
+            await existingLike.remove()
+            res.status(200).json({ message: "Deleted successfully" })
+        } catch (error) {
+            res.status(500).json({ error: error.message })
+        }
+    } else {
+        const like = new Like({
+            userId,
+            recipeId: mongoose.Types.ObjectId(recipeId),
+        })
+        
+        try {
+            const newLike = await like.save()
+            res.status(200).json(newLike)
+        } catch (error) {
+            res.status(500).json({ error: error.message })
+        }
     }
 };
 
 
 export async function deleteLike(req, res) {
-    const { likeId } = req.params
+    /*const { likeId } = req.params
 
     let like
 
@@ -46,6 +62,6 @@ export async function deleteLike(req, res) {
         res.status(200).json({ message: "Deleted successfully" })
     } catch (error) {
         res.status(500).json({ message: error.message })
-    }
+    }*/
 };
 

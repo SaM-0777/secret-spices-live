@@ -1,9 +1,19 @@
-import mongoose from "mongoose";
+import { cognitoExpress } from "../../server.js";
 
+/*
+const accessToken = "eyJraWQiOiIycjBmQ2dmeHFDeTlKak1kZ2JiUXZhbzB2YUxmZW9Gd1p1aEdHUThjcFZnPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI5NDg4OGE3OS0zMjY3LTQwZWYtYjIxMi00NTM4NTlkNGU4ZjkiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV91ZjFoclB4a08iLCJjbGllbnRfaWQiOiIyb203bDhhdmk3Y3JxZjVjY2ZrdjI4OG9ndiIsIm9yaWdpbl9qdGkiOiIxZWFkMmJjZC01MjU0LTQ3MzEtOWNhYS0wMmRhYWE3NTAwYWIiLCJldmVudF9pZCI6ImU2M2M2ZDUwLWRkOWMtNDJjYy1hNzhlLTZhMzcxYTRkM2EwMCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2NzIwNDk0NzksImV4cCI6MTY3MjA1MzM1OCwiaWF0IjoxNjcyMDQ5NzU4LCJqdGkiOiI1MDk1YWFhMS0yZDI1LTRjZjktODQ5MC1mNDJlOTdlZDhjYTciLCJ1c2VybmFtZSI6Ijk0ODg4YTc5LTMyNjctNDBlZi1iMjEyLTQ1Mzg1OWQ0ZThmOSJ9.MrJ1qMVsy3-PFjSVhaqreWeyN89ppPbp2nwtJbh4C4o6YHaQgHueFIz1h8Bld3R5B8-SgqD02IzaP1kqVGKHt7noL94KOT_O2CxnuNqs3haIrYSHsVbMPQt4JVI9ngFU6U1zPkdsbgTjK5LxhEb1nzlkSG4bGIBvtDzS8Jy9sfp_4xOTHk_sA8Q7SKC1jkk7cap-6-q4rDEKOKFKF7N02UzFOIecRsGPRAYeT27tByeQZrcO6wkAC4bRN5UZ0EQhjImIOX7hOHwr8k6_YK9p5ryX3me7xPHo-GLhhg_doJET0AdKEB2yPT61OydAQDPfg2-Qywnr3XaIdPUmghzirA"
+const idToken = "eyJraWQiOiJWV1wvUzM0eWhXRzhxaGpaam1cL0hlM3M1dEJXQkZQZ1FqbEYyc2o0eVY3Mkk9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI5NDg4OGE3OS0zMjY3LTQwZWYtYjIxMi00NTM4NTlkNGU4ZjkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfdWYxaHJQeGtPIiwiY29nbml0bzp1c2VybmFtZSI6Ijk0ODg4YTc5LTMyNjctNDBlZi1iMjEyLTQ1Mzg1OWQ0ZThmOSIsIm9yaWdpbl9qdGkiOiIxZWFkMmJjZC01MjU0LTQ3MzEtOWNhYS0wMmRhYWE3NTAwYWIiLCJhdWQiOiIyb203bDhhdmk3Y3JxZjVjY2ZrdjI4OG9ndiIsImV2ZW50X2lkIjoiZTYzYzZkNTAtZGQ5Yy00MmNjLWE3OGUtNmEzNzFhNGQzYTAwIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2NzIwNDk0NzksImV4cCI6MTY3MjA1MzM1OCwiaWF0IjoxNjcyMDQ5NzU4LCJqdGkiOiIyN2UxNDQ0Mi1kY2RmLTRmZTQtYThmNy1mMTViYmRiODJmN2EiLCJlbWFpbCI6IlNhbS4yLjMuNC41LnJhbmphbkBnbWFpbC5jb20ifQ.p-3VOGoIeiisgOj4H-qmyq0dQfvMMBNQfJv87hgisk-QaAwCT2vFrE-zHZKBVSbRkaoOG6QXOCR8CP0WuG_sbSKP5bmJFOswM8c611IHkin299K0NCdD3YsTjNyLT4gCxyezm_jw2U46xm3WEqBFoI7ixAn9s4s8XmTJmoOVdM17ysEv8yJVB-jdbS9J-sQFLKg7IIQeIDLFtT4OuEcMm9qRtRmmeNYESlK09tK2fjwDw9ATnyqYuxyMqn15KQtNrs4sUMzoPZEgZF5NHMFfxodAelVviAc3Bs6NR0jRrBBGIzD035rXotMwdl3l9GQgChIFPubEsh9K7pMsyMKczw"
+*/
 
 export default async function (req, res, next) {
-    const { cookbookId } = req.params
-    if (!mongoose.Types.ObjectId.isValid(cookbookId)) return res.status(404).json({ messgae: 'Object not found!' })
-    next()
+    const { idtoken, accesstoken } = req.headers
+    try {
+        const response = await cognitoExpress.validate(idtoken)
+        res.response = response
+        console.log(res.response)
+        next()
+    } catch (error) {
+        res.status(401).json({ error: "Unauthorized request" })
+    }
 };
 

@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import CognitoExpress from "cognito-express";
 
 // Routes
 import { userRoutes, ownerRoutes } from "./routes/index.js";
@@ -20,7 +21,7 @@ app.use(morgan("dev"));
 
 // routes
 app.use("/api/user", userRoutes);
-app.use("/api/owner", ownerRoutes);
+// app.use("/api/owner", ownerRoutes);
 // app.use("/api/admin", adminRouter);
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500
@@ -33,6 +34,12 @@ app.use((err, req, res, next) => {
     })
 });
 
+export const cognitoExpress = new CognitoExpress({
+    region: process.env.AWSREGION,
+    cognitoUserPoolId: process.env.AWSCOGNITOUSERPOOLID,
+    tokenUse: "id",
+    // tokenExpiration: 3600000
+})
 
 // DB config
 mongoose.connect(process.env.MONGO, () => {

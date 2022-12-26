@@ -31,7 +31,7 @@ RecipeRouter.get('/details/:recipeId', getRecipeDetailsByRecipeId);
  * Method   Desc
  * POST     Create a recipe
  */
-RecipeRouter.post('/create/new', createRecipe);
+// RecipeRouter.post('/create/new', createRecipe);
 
 
 
