@@ -101,7 +101,7 @@ export async function getRecipeDetailsByRecipeId(req, res) {
             },
         },*/
         {
-            "$project": { "HeroBanner": 1, "Title": 1, "Description": 1, "Servings": 1, "Nutrients": 1, "viewCount": { "$size": "$Views" }, "commentCount": { "$size": "$Comments" }, "Instructions": 1, "Ingredients": 1, "likeCount": { "$size": "$Likes" } }    // "Author._id": 1, "Author.thumbnail": 1, "Author.name": 1, "Author.authorSocials": 1, "Author.isVerified": 1,
+            "$project": { "HeroBanner": 1, "Title": 1, "Description": 1, "Servings": 1, "Nutrients": 1, "viewCount": { "$size": "$Views" }, "commentCount": { "$size": "$Comments" }, "Instructions": 1, "Image_Name": 1, "Ingredients": 1, "likeCount": { "$size": "$Likes" } }    // "Author._id": 1, "Author.thumbnail": 1, "Author.name": 1, "Author.authorSocials": 1, "Author.isVerified": 1,
         },
     ])
 
