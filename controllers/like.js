@@ -18,14 +18,14 @@ export async function createLike(req, res) {
     let existingLike
 
     try {
-        existingLike = await Like.find({ userId: userId, recipeId: recipeId })
+        existingLike = await Like.find({ userId: userId, recipeId: mongoose.Types.ObjectId(recipeId) })
     } catch (error) {
         
     }
 
-    if (existingLike) {
+    if (existingLike.length > 0) {
         try {
-            await existingLike.remove()
+            await existingLike[0].remove()
             res.status(200).json({ message: "Deleted successfully" })
         } catch (error) {
             res.status(500).json({ error: error.message })

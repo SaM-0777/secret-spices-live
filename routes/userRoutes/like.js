@@ -18,7 +18,7 @@ LikeRouter.get('/all', getAllLikes);
  * Method   Desc
  * POST     Create a Like
  */
-LikeRouter.post('/create/new', isValidAuthor, createLike);
+LikeRouter.post('/create/new', createLike);
 
 
 /**
