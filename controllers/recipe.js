@@ -19,6 +19,8 @@ export async function getAllRecipes(req, res) {
 
 
 export async function getRecipesDisplay(req, res) {
+    const { userId } = req.body
+
     const query = Recipe.aggregate([
         /*{
             "$lookup": {
@@ -45,7 +47,18 @@ export async function getRecipesDisplay(req, res) {
             },
         },
         {
-            "$project": {"Thumbnail": 1, "Title": 1, "Vegan": 1, "Image_Name": 1, "createdAt": 1, "likeCount": {"$size": "$Likes"}, "viewCount": {"$size": "$Views"} }
+            "$lookup": {
+                "from": "usersavedrecipes",
+                "let": { "recipeId": "$_id" },
+                "pipeline": [
+                    { "$match": { "$expr": { "$eq": ["$recipeId", "$$recipeId"] } } },
+                    { "$match": { "$expr": { "$eq": ["$userId", userId] } } },
+                ],
+                "as": "UserSavedRecipe"
+            },
+        },
+        {
+            "$project": { "Thumbnail": 1, "Title": 1, "Vegan": 1, "Image_Name": 1, "createdAt": 1, "likeCount": { "$size": "$Likes" }, "viewCount": { "$size": "$Views" }, "UserSavedRecipe": 1 }
         },
         {
             "$limit": 15,
@@ -62,6 +75,7 @@ export async function getRecipesDisplay(req, res) {
 
 export async function getRecipeDetailsByRecipeId(req, res) {
     const { recipeId } = req.params
+    const { userId } = req.body
 
     const query = Recipe.aggregate([
         {
@@ -92,6 +106,28 @@ export async function getRecipeDetailsByRecipeId(req, res) {
                 "as": "Likes",
             },
         },
+        {
+            "$lookup": {
+                "from": "likes",
+                "let": { "recipeId": "$_id" },
+                "pipeline": [
+                    { "$match": { "$expr": { "$eq": ["$recipeId", "$$recipeId"] } } },
+                    { "$match": { "$expr": { "$eq": ["$userId", userId] } } },
+                ],
+                "as": "UserRecipeLike"
+            },
+        },
+        {
+            "$lookup": {
+                "from": "usersavedrecipes",
+                "let": { "recipeId": "$_id" },
+                "pipeline": [
+                    { "$match": { "$expr": { "$eq": ["$recipeId", "$$recipeId"] } } },
+                    { "$match": { "$expr": { "$eq": ["$userId", userId] } } },
+                ],
+                "as": "UserSavedRecipe"
+            },
+        },
         /*{
             "$lookup": {
                 "from": "authors",
@@ -101,7 +137,7 @@ export async function getRecipeDetailsByRecipeId(req, res) {
             },
         },*/
         {
-            "$project": { "HeroBanner": 1, "Title": 1, "Description": 1, "Servings": 1, "Nutrients": 1, "viewCount": { "$size": "$Views" }, "commentCount": { "$size": "$Comments" }, "Instructions": 1, "Image_Name": 1, "Ingredients": 1, "likeCount": { "$size": "$Likes" } }    // "Author._id": 1, "Author.thumbnail": 1, "Author.name": 1, "Author.authorSocials": 1, "Author.isVerified": 1,
+            "$project": { "HeroBanner": 1, "Title": 1, "Description": 1, "Servings": 1, "Nutrients": 1, "viewCount": { "$size": "$Views" }, "commentCount": { "$size": "$Comments" }, "Instructions": 1, "Image_Name": 1, "Ingredients": 1, "likeCount": { "$size": "$Likes" }, "UserRecipeLike": 1, "UserSavedRecipe": 1 }    // "Author._id": 1, "Author.thumbnail": 1, "Author.name": 1, "Author.authorSocials": 1, "Author.isVerified": 1,
         },
     ])
 
