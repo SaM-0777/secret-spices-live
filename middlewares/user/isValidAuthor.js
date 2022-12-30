@@ -10,7 +10,7 @@ export default async function (req, res, next) {
     try {
         const response = await cognitoExpress.validate(idtoken)
         res.response = response
-        console.log(res.response)
+        // console.log(res.response)
         next()
     } catch (error) {
         res.status(401).json({ error: "Unauthorized request" })

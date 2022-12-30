@@ -25,7 +25,7 @@ LikeRouter.post('/create/new', isValidAuthor, createLike);
  * Method   Desc
  * DELETE   Delete a Like
  */
-// LikeRouter.delete('/delete/:likeId', isValidAuthor, deleteLike);
+LikeRouter.delete('/delete', isValidAuthor, deleteLike);
 
 
 export default LikeRouter;

@@ -1,13 +1,14 @@
 import express from 'express';
 
-import { createOrDeleteSavedUserRecipes } from '../../controllers/savedRecipes.js';
+import { createSavedUserRecipes, deleteSavedUserRecipe } from '../../controllers/savedRecipes.js';
 import isValidAuthor from '../../middlewares/user/isValidAuthor.js';
 
 
 const UserSavedRecipeRouter = express.Router()
 
 
-UserSavedRecipeRouter.post('/new', isValidAuthor, createOrDeleteSavedUserRecipes);
+UserSavedRecipeRouter.post('/new', isValidAuthor, createSavedUserRecipes);
+UserSavedRecipeRouter.delete('/delete', isValidAuthor, deleteSavedUserRecipe);
 
 
 export default UserSavedRecipeRouter;
