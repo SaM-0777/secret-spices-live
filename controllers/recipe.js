@@ -22,6 +22,9 @@ export async function getRecipesDisplay(req, res) {
     const { userId } = req.body
 
     const query = Recipe.aggregate([
+        {
+            "$sample": { size: 15 }
+        },
         /*{
             "$lookup": {
                 "from": "authors",
